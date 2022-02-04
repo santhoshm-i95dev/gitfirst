@@ -1,0 +1,213 @@
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| 243magento         |
+| information_schema |
+| myinstance         |
+| mysql              |
+| performance_schema |
+| sys                |
+| test               |
++--------------------+
+7 rows in set (0.00 sec)
+
+
+
+mysql> use test;
+mysql> show tables;
++----------------+
+| Tables_in_test |
++----------------+
+| Persons        |
+| fourfeb        |
+| human          |
++----------------+
+3 rows in set (0.00 sec)
+
+
+mysql> describe human;
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| PersonID  | int          | YES  |     | NULL    |       |
+| LastName  | varchar(255) | YES  |     | NULL    |       |
+| FirstName | varchar(255) | YES  |     | NULL    |       |
+| Address   | varchar(255) | YES  |     | NULL    |       |
+| City      | varchar(255) | YES  |     | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+5 rows in set (0.02 sec)
+
+
+
+mysql> describe fourfeb;;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| id      | int          | YES  |     | NULL    |       |
+| usrname | varchar(255) | YES  |     | NULL    |       |
+| pass    | varchar(255) | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+ERROR: 
+No query specified
+
+
+
+mysql> insert into fourfeb(id,usrname,pass) values(1,"abc","abc1");
+mysql> insert into fourfeb(id,usrname,pass) values(2,"def","def2");
+Query OK, 1 row affected (0.10 sec)
+
+mysql> insert into fourfeb(id,usrname,pass) values(3,"ghi","ghi3");
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into fourfeb(id,usrname,pass) values(4,"jkl","jkl4");
+Query OK, 1 row affected (0.09 sec)
+
+mysql> insert into fourfeb(id,usrname,pass) values(5,"mno","mno5");
+Query OK, 1 row affected (0.07 sec)
+
+mysql> select * from fourfeb;
++------+---------+------+
+| id   | usrname | pass |
++------+---------+------+
+|    1 | abc     | abc1 |
+|    2 | def     | def2 |
+|    3 | ghi     | ghi3 |
+|    4 | jkl     | jkl4 |
+|    5 | mno     | mno5 |
++------+---------+------+
+5 rows in set (0.00 sec)
+
+
+mysql> select * from human;
++----------+----------+-----------+---------+----------+
+| PersonID | LastName | FirstName | Address | City     |
++----------+----------+-----------+---------+----------+
+|       55 | abc      | def       | blore   | rajblore |
+|       55 | abc      | def       | blore   | rajblore |
++----------+----------+-----------+---------+----------+
+2 rows in set (0.02 sec)
+
+mysql> create table fourfebcopy as select * from fourfeb ;
+Query OK, 5 rows affected (0.60 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> show tables;
++----------------+
+| Tables_in_test |
++----------------+
+| Persons        |
+| fourfeb        |
+| fourfebcopy    |
+| human          |
++----------------+
+4 rows in set (0.00 sec)
+
+
+mysql> select * from fourfebcopy;
++------+---------+------+
+| id   | usrname | pass |
++------+---------+------+
+|    1 | abc     | abc1 |
+|    2 | def     | def2 |
+|    3 | ghi     | ghi3 |
+|    4 | jkl     | jkl4 |
+|    5 | mno     | mno5 |
++------+---------+------+
+5 rows in set (0.00 sec)
+
+mysql> update fourfebcopy set id = 6 , usrname = "pqr" , pass ="pqr6" ;
+Query OK, 5 rows affected (0.08 sec)
+Rows matched: 5  Changed: 5  Warnings: 0
+
+mysql> select * from fourfebcopy;
++------+---------+------+
+| id   | usrname | pass |
++------+---------+------+
+|    6 | pqr     | pqr6 |
+|    6 | pqr     | pqr6 |
+|    6 | pqr     | pqr6 |
+|    6 | pqr     | pqr6 |
+|    6 | pqr     | pqr6 |
++------+---------+------+
+5 rows in set (0.00 sec)
+
+mysql> select * from fourfebcopy;
++------+---------+------+
+| id   | usrname | pass |
++------+---------+------+
+|    1 | abc     | abc1 |
+|    2 | def     | def2 |
+|    3 | ghi     | ghi3 |
+|    4 | jkl     | jkl4 |
+|    5 | mno     | mno5 |
++------+---------+------+
+5 rows in set (0.00 sec)
+
+mysql> update fourfebcopy set id = 6 , usrname = "pqr" , pass ="pqr6" ;
+Query OK, 5 rows affected (0.08 sec)
+Rows matched: 5  Changed: 5  Warnings: 0
+
+mysql> select * from fourfebcopy;
++------+---------+------+
+| id   | usrname | pass |
++------+---------+------+
+|    6 | pqr     | pqr6 |
+|    6 | pqr     | pqr6 |
+|    6 | pqr     | pqr6 |
+|    6 | pqr     | pqr6 |
+|    6 | pqr     | pqr6 |
++------+---------+------+
+5 rows in set (0.00 sec)
+
+mysql> CREATE TABLE P (     ID int NOT NULL,     LastName varchar(255) NOT NULL,     FirstName varchar(255) NOT NULL,     Age int );
+Query OK, 0 rows affected (0.50 sec)
+
+mysql> describe p;
+ERROR 1146 (42S02): Table 'test.p' doesn't exist
+mysql> show tables;
++----------------+
+| Tables_in_test |
++----------------+
+| P              |
+| Persons        |
+| fourfeb        |
+| fourfebcopy    |
+| human          |
++----------------+
+5 rows in set (0.00 sec)
+
+mysql> describe P;
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| ID        | int          | NO   |     | NULL    |       |
+| LastName  | varchar(255) | NO   |     | NULL    |       |
+| FirstName | varchar(255) | NO   |     | NULL    |       |
+| Age       | int          | YES  |     | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> describe fourfeb;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| id      | int          | YES  |     | NULL    |       |
+| usrname | varchar(255) | YES  |     | NULL    |       |
+| pass    | varchar(255) | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+
+mysql> select * from P;
++----+----------+-----------+------+
+| ID | LastName | FirstName | Age  |
++----+----------+-----------+------+
+|  1 | me       | only      | NULL |
++----+----------+-----------+------+
+1 row in set (0.00 sec)
+
+
