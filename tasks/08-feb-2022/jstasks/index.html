@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>form handling</title>
+</head>
+<body>
+<!-- form validation -->
+<br>
+<br>
+<br>
+ <form action="index.php" method="POST" onsubmit="validation()" >
+     <fieldset style="border: 3px purple solid;border-radius: 6px ">
+         <legend>Form Validation</legend>
+     <label for="fname">First Name </label>
+     <input oninvalid="fnamevalidation()" type="text" id="fname" name="fname" placeholder="First Name" style="width:350px;height: 25px;border-radius: 6px;margin-left: 50px;"  required > <sup style="color: red; font-size: 19px;">*</sup> <br>   <br>
+
+     <label for="lname">Last Name </label>
+     <input oninvalid="lnamevalidation()" type="text" id="lname" name="lname" placeholder="Last Name" style="width:350px;height: 25px;border-radius: 6px;margin-left: 50px;" required > <sup style="color: red; font-size: 19px;">*</sup>   <br>   <br>   <br>
+
+     <label for="email">Email Id </label>
+     <input type="email" id="email" name="email" placeholder="Email" style="width:350px;height: 25px;border-radius: 6px;margin-left: 63px;" required> <sup style="color: red; font-size: 19px;">*</sup> <br>   <br>
+
+     <label for="num">Phone Number </label>
+     <input type="number" id="num" name="num" placeholder="Number" style="width:350px;height: 25px;border-radius: 6px;margin-left: 23px;" required> <sup style="color: red; font-size: 19px;" pattern="[\+][\(]\d{2}[\)]\d{10}">*</sup>    <br>   <br>   <br>
+
+     <label for="address">Address </label>
+<!--     <input type="text" id="address" name="address" placeholder="Address" required>  <br>   <br>-->
+         <input onkeyup="addressvalidation()" name="address" id="address" placeholder="Enter the text" style="width:350px;height: 45px;border-radius: 6px;margin-left: 67px;" required ></input> <sup style="color: red; font-size: 19px;">*</sup> <p id="adddisp"> </p>   <br>   <br>
+
+
+         <label for="state">Select State</label>
+     <select id="state" name="state" id="state" style="width:350px;height: 25px;border-radius: 6px;margin-left: 50px;">
+         <option value="karnataka" selected>Karnataka</option>
+         <option value="tamilnadu">Tamil Nadu</option>
+         <option value="telangana">Telangana</option>
+     </select>  <br>   <br>
+
+     <label for="city">Select City</label>
+     <select name="city" id="city" style="width:350px;height: 25px;border-radius: 6px;margin-left: 53px;">
+         <option value="Bangalore" selected>Bangalore</option>
+         <option value="Rajajinagar">Rajajinagar</option>
+         <option value="MG road">MG road</option>
+     </select>  <br>  <br>  <br>
+
+         <input type="checkbox" id="check" name="check" required >
+         <label for="check">Agree to terms and conditions </label>  <br>   <br>
+
+         <button type="submit" style="background-color:cornflowerblue; color: black;font-size: 19px;width: 175px;height:40px;border-radius: 9px" >Submit Form</button>
+
+     </fieldset>
+ </form>
+
+
+<script >
+    function addressvalidation() {
+
+        //address validation
+        let addval;
+        addval = document.getElementById("address").value;
+
+        let text;
+        let regex = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+        if (regex.test(addval)) {
+            alert("Address cannot includes special characters");
+        }
+    }
+
+    //first name validation function
+    function fnamevalidation() {
+        //first name validation
+        let fn;
+        fn = /[a-z]{1,15}/;
+        let fnget = document.getElementById("fname");
+        if (fn.test(fnget)) {
+            alert("include only lower case and not include special characters");
+        }
+    }
+
+        //lastname validation
+    function lnamevalidation() {
+        //first name validation
+        let fn;
+        fn = /[a-z]{1,15}/;
+        let lnget = document.getElementById("lname");
+        if (ln.test(lnget)) {
+            alert("include only lower case and not include special characters");
+        }
+    }
+    
+        //    phone number validation
+       function phonevalidation(){
+        let numvalidation;
+        numvalidation = document.getElementById(num).value;
+        // let len =/^d{10}$/;
+        if (numvalidation.length != 10) {
+            alert("please enter 10 digit number");
+        }
+    }
+</script>
+
+
+
+</body>
+</html>
