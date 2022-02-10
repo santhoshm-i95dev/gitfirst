@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Handling</title>
+</head>
+<body id="theme">
+<!--<div style="margin-left: 100px;margin-top:0px ">-->
+
+ <bold style="font-size: 20px" id="bt" > Change The Theme</bold>
+<button id="btn1" type="submit" onclick="blacktheme()" style="color: white;font-size: 16px;font-weight: bold;font-family: cursive;border-radius: 6px;width:165px;height: 28px;background-color: red ">Red theme</button>
+<button id="btn2" type="submit" onclick="yellowtheme()" style="color: black;font-size: 16px;font-weight: bold;font-family: cursive;border-radius: 6px;width:165px;height: 28px;background-color: yellow">yellow theme</button>
+
+    <!-- form validation -->
+<br>
+<br>
+<br>
+ <form action="index.php" method="POST"  >
+     <fieldset style="border: 3px purple solid;border-radius: 6px ;margin-top: 0px">
+         <legend>Form Validation</legend>
+     <label for="fname">First Name </label>
+     <input  type="text" id="fname" name="fname" placeholder="First Name" style="width:350px;height: 25px;border-radius: 6px;margin-left: 50px;"  required > <sup style="color: red; font-size: 19px;">*</sup> <br>   <br>
+
+     <label for="lname">Last Name </label>
+     <input  type="text" id="lname" name="lname" placeholder="Last Name" style="width:350px;height: 25px;border-radius: 6px;margin-left: 50px;" required > <sup style="color: red; font-size: 19px;">*</sup>   <br>   <br>   <br>
+
+     <label for="email">Email Id </label>
+     <input type="email" id="email" name="email" placeholder="Email" style="width:350px;height: 25px;border-radius: 6px;margin-left: 63px;" required> <sup style="color: red; font-size: 19px;">*</sup> <br>   <br>
+
+     <label for="num">Phone Number </label>
+     <input type="number" id="num" name="num" placeholder="Number" style="width:350px;height: 25px;border-radius: 6px;margin-left: 23px;" required> <sup style="color: red; font-size: 19px;" pattern="[\+][\(]\d{2}[\)]\d{10}">*</sup>    <br>   <br>   <br>
+
+     <label for="address">Address </label>
+<!--     <input type="text" id="address" name="address" placeholder="Address" required>  <br>   <br>-->
+         <input onkeyup="addressvalidation()" name="address" id="address" placeholder="Enter the text" style="width:350px;height: 45px;border-radius: 6px;margin-left: 67px;" required ></input> <sup style="color: red; font-size: 19px;">*</sup> <br>   <br>
+
+
+         <label for="state">Select State</label>
+     <select id="state" name="state" id="state" style="width:350px;height: 25px;border-radius: 6px;margin-left: 50px;">
+         <option value="karnataka" selected>Karnataka</option>
+         <option value="tamilnadu">Tamil Nadu</option>
+         <option value="telangana">Telangana</option>
+     </select>  <br>   <br>
+
+     <label for="city">Select City</label>
+     <select name="city" id="city" style="width:350px;height: 25px;border-radius: 6px;margin-left: 53px;">
+         <option value="Bangalore" selected>Bangalore</option>
+         <option value="Rajajinagar">Rajajinagar</option>
+         <option value="MG road">MG road</option>
+     </select>  <br>  <br>  <br>
+
+         <input type="checkbox" id="check" name="check" required >
+         <label for="check">Agree to terms and conditions </label>  <br>   <br>
+
+         <button onclick="validation()" type="submit" style="background-color:cornflowerblue; color: black;font-size: 19px;width: 175px;height:40px;border-radius: 9px" >Submit Form</button>
+
+     </fieldset>
+ </form>
+
+
+<script >
+
+        //one single js function for all the validation
+        function validation()
+        {
+           let fnget = document.getElementById("fname").value;
+            let lnget = document.getElementById("lname").value;
+            let emailget =   document.getElementById("email").value;
+            let numget =  document.getElementById("num").value;
+           let addget = document.getElementById("address").value;
+            let checkget = document.getElementById("check").value;
+
+            // regex values
+            let addressregex = /^[a-zA-Z]{1,15}$/;
+            let emailregex =/^[a-z]{1,15}@[a-z]{1,15}[.][a-z]{1,15}$/;
+            let phoneregex = /^[0-9]{10}$/;
+            let addregex= /^[0-9a-z]{,50}$/;
+           // else if ladder starts
+           if(fnget == "")
+           {
+               alert("please enter the firstname");
+               return false;
+           }
+           else if (!(addressregex.test(fnget))) {
+               alert("please enter only lowercase alphabets for firstname");
+               return false;
+           }
+
+            else if(lnget == "")
+            {
+               alert("please enter the last name");
+                return false;
+           }
+           else if (!(addressregex.test(lnget))) {
+               alert("please enter only lowercase alphabets for lastname");
+               return false;
+           }
+            else if(emailget=="")
+            {
+                alert("please enter the email");
+                return false;
+            }
+           else if (!(emailregex.test(emailget))) {
+               alert("enter valid email 'ex:jhon@gmail.com'");
+               return false;
+           }
+            else if(numget=="")
+            {
+                alert("please enter the number");
+                return false;
+            }
+           else if (!(phoneregex.test(numget))) {
+               alert("please enter 10 digit valid number");
+               return false;
+           }
+           else if(addget=="")
+            {
+                alert("please fill the address field");
+                return false;
+           }
+           else if (!(addressregex.test(addget))) {
+               alert("Address cannot includes special characters");
+               return false;
+           }
+
+            else if(checkget!=null) //not equal to null or true
+            {
+                alert("please agree to terms and conditions");
+                return false;
+            }
+            else{
+                alert("Form submitted successfully");
+               return false;
+           }
+
+        }
+
+        //function change theme color
+        let get = document.getElementById("theme").style.backgroundColor = 'white';
+        function blacktheme() {
+            let get = document.getElementById("theme").style.backgroundColor = 'white';
+
+            if (get == 'white') {
+                document.getElementById("theme").style.backgroundColor = "red";
+                document.getElementById("btn1").innerHTML="Iam red color";
+                document.getElementById("bt").innerHTML="Iam red color and Italic";
+                document.getElementById("bt").style.fontStyle="italic";
+            }
+        }
+
+        function yellowtheme() {
+            let get = document.getElementById("theme").style.backgroundColor = 'white';
+
+            if (get == 'white') {
+                document.getElementById("theme").style.backgroundColor = "yellow";
+                document.getElementById("btn2").innerHTML="Iam Yellow color";
+                document.getElementById("bt").innerHTML="Iam yellow color and oblique";
+                document.getElementById("bt").style.fontStyle="oblique";
+            }
+
+
+        }
+
+    // function addressvalidation() {
+    //
+    //     //address validation
+    //     let addval;
+    //     addval = document.getElementById("address").value;
+    //
+    //     let text;
+    //     let regex = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+    //     if (regex.test(addval)) {
+    //         alert("Address cannot includes special characters");
+    //     }
+    // }
+    //
+    // //first name validation function
+    // function fnamevalidation() {
+    //     //first name validation
+    //
+    //     let fnget ;
+    //     fnget = document.getElementById("fname");
+    //     let fn;
+    //     // fn= /^[a-zA-z]+[a-zA-z]+$/;
+    //     //  fn = /^[a-zA-Z]{1,15}$/;
+    //     fn=/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+    //
+    //     if (!fn.test(fnget)==false) {
+    //        alert("include only lower case and not include special characters in firstname");
+    //        return true;
+    //     }
+    //     else {
+    //         alert("valid name");
+    //         return false;
+    //     }
+    // }
+    //
+    //     //lastname validation
+    // function lnamevalidation() {
+    //     //last name validation
+    //     let ln;
+    //      // ln = /^[a-zA-Z]{1,15}$/;
+    //      ln = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+    //     let lnget = document.getElementById("lname");
+    //     if (ln.test(lnget)) {
+    //       return  alert("include only lower case and not include special characters in lastname");
+    //     }
+    // }
+    //
+    //     //    phone number validation
+    //    function phonevalidation(){
+    //     let numvalidation;
+    //     numvalidation = document.getElementById(num).value;
+    //     // let len =/^d{10}$/;
+    //     if (numvalidation.length != 10)
+    //     {
+    //       return   alert("please enter 10 digit number");
+    //     }
+    // }
+
+</script>
+
+
+
+</body>
+</html>
