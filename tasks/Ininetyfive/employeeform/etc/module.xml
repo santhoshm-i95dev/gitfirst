@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/** HelloWorld module xml
+ * @category  Magetop
+ * @package   Magetop_HelloWorld
+ * @author    Magetop
+ * @copyright Copyright (c) 2010-2017 Magetop Software Private Limited (https://Magetop.com)
+ * @license   https://store.Magetop.com/license.html
+ */
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="Ininetyfive_employeeform" setup_version="2.0.0">
+    </module>
+</config>
